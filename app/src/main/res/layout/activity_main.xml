@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/bt_xc"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="图片" />
+
+
+        <com.wu.large.LargeImageView
+            android:id="@+id/iv_show"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_below="@+id/bt_xc" />
+
+    </RelativeLayout>
+</layout>

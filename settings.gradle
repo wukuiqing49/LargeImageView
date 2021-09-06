@@ -1,0 +1,3 @@
+include ':lib_large'
+include ':app'
+rootProject.name = "LargeImageView"
