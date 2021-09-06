@@ -15,8 +15,8 @@
 
         <com.wu.large.LargeImageView
             android:id="@+id/iv_show"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_below="@+id/bt_xc" />
 
     </RelativeLayout>

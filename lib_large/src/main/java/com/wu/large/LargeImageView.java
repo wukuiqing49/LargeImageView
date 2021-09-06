@@ -104,6 +104,7 @@ public class LargeImageView extends RelativeLayout {
      */
     public void setImageUrl(String imageUrl, String previewUrl) {
         if (mContext == null || binding == null || TextUtils.isEmpty(imageUrl)) return;
+        binding.ivPreview.setVisibility(View.VISIBLE);
         showLoading(true);
         try {
             if (imageUrl.startsWith("http")) {
@@ -128,10 +129,9 @@ public class LargeImageView extends RelativeLayout {
 
     private void showPreviewUrl(String previewUrl) {
         if (mContext == null || binding == null || TextUtils.isEmpty(previewUrl)) return;
-        showLarge(false);
         setZoom(false);
-        RequestOptions option = RequestOptions.centerCropTransform().encodeQuality(60).dontTransform().dontAnimate();
-        Glide.with(mContext).load(previewUrl).apply(option).into(binding.ivImage);
+        RequestOptions option = RequestOptions.centerCropTransform().dontTransform().dontAnimate();
+        Glide.with(mContext).load(previewUrl).into(binding.ivPreview);
 
     }
 
@@ -149,6 +149,7 @@ public class LargeImageView extends RelativeLayout {
         } else {
             showPhotoView(filePath);
         }
+        binding.ivPreview.setVisibility(View.GONE);
     }
 
     /**
@@ -172,6 +173,7 @@ public class LargeImageView extends RelativeLayout {
 
             @Override
             public boolean onResourceReady(GifDrawable resource, Object model, Target<GifDrawable> target, DataSource dataSource, boolean isFirstResource) {
+                binding.ivPreview.setVisibility(View.GONE);
                 showLoading(false);
                 return false;
             }
@@ -248,7 +250,7 @@ public class LargeImageView extends RelativeLayout {
         showLarge(false);
         Glide.with(mContext).load(R.drawable.iv_new_media_zw).into(binding.ivImage);
         showLoading(false);
-
+        binding.ivPreview.setVisibility(View.GONE);
     }
 
     /**
@@ -262,6 +264,7 @@ public class LargeImageView extends RelativeLayout {
         } else {
             binding.lvLoading.setVisibility(View.INVISIBLE);
         }
+
 
     }
 
@@ -373,7 +376,7 @@ public class LargeImageView extends RelativeLayout {
             binding.large.setVisibility(View.INVISIBLE);
             binding.ivImage.setVisibility(View.VISIBLE);
         }
-
+        binding.ivPreview.setVisibility(View.GONE);
     }
 
     /**

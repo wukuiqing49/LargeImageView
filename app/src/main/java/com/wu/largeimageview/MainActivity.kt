@@ -22,11 +22,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
         //本地
-//        binding!!.ivShow.setResource(R.drawable.test)
+//        binding!!.ivShow.setResource(R.drawable.iv_new_media_zw)
         //url
-//        binding!!.ivShow.setImageUrl("https://www.baidu.com/img/flexible/logo/pc/result.png")
+        binding!!.ivShow.setImageUrl("https://www.baidu.com/img/flexible/logo/pc/result.png")
 
-        binding!!.ivShow.setImageUrl("https://pic.ibaotu.com/gif/19/79/37/42T888piCEZc.gif!fwpaa50/fw/1200","https://www.baidu.com/img/flexible/logo/pc/result.png")
+//        binding!!.ivShow.setImageUrl("https://cdn.cnbj1.fds.api.mi-img.com/middle.community.vip.bkt/79e7d7ff40199c56a0d52359d56f0870", "https://img0.baidu.com/it/u=1123836491,3626797667&fm=26&fmt=auto&gp=0.jpg")
         binding!!.btXc.setOnClickListener {
             open()
         }
