@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         //url
         binding!!.ivShow.setImageUrl("https://www.baidu.com/img/flexible/logo/pc/result.png")
 
-//        binding!!.ivShow.setImageUrl("https://cdn.cnbj1.fds.api.mi-img.com/middle.community.vip.bkt/79e7d7ff40199c56a0d52359d56f0870", "https://img0.baidu.com/it/u=1123836491,3626797667&fm=26&fmt=auto&gp=0.jpg")
+//
         binding!!.btXc.setOnClickListener {
             open()
         }
