@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
         //本地
 //        binding!!.ivShow.setResource(R.drawable.iv_new_media_zw)
         //url
-        binding!!.ivShow.setImageUrl("https://www.baidu.com/img/flexible/logo/pc/result.png")
+        binding!!.ivShow.setImageUrl("https://file.intbull.com/scenic/google_street/20/F8E2AAA5FD7C6969178151C26E2D3FA3.png")
 
 //
         binding!!.btXc.setOnClickListener {
