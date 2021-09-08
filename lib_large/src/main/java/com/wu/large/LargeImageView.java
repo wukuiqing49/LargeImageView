@@ -142,7 +142,7 @@ public class LargeImageView extends RelativeLayout {
      */
     public void setFilePath(String filePath) {
         if (mContext == null || binding == null || TextUtils.isEmpty(filePath)) return;
-        if (LargeUtil.isNoSupport(filePath)) {
+        if (!LargeUtil.isNoSupport(filePath)) {
             setImageFilePath(filePath);
         } else if (LargeUtil.isGif(filePath)) {
             setGif(filePath);
@@ -201,7 +201,6 @@ public class LargeImageView extends RelativeLayout {
         if (mContext == null || binding == null || bm == null) return;
         showLoading(true);
         try {
-            binding.large.setImage(ImageSource.bitmap(bm));
             binding.large.setOnImageEventListener(new SubsamplingScaleImageView.OnImageEventListener() {
                 @Override
                 public void onReady() {
@@ -233,6 +232,8 @@ public class LargeImageView extends RelativeLayout {
 
                 }
             });
+            binding.large.setImage(ImageSource.bitmap(bm));
+
         } catch (Exception e) {
             showErr();
         }
@@ -273,11 +274,7 @@ public class LargeImageView extends RelativeLayout {
         if (mContext == null || binding == null) return;
         try {
             showLoading(true);
-            if (LargeUtil.isAndroidQ()) {
-                binding.large.setImage(ImageSource.uri(LargeUtil.getImageContentUri(mContext, new File(filePath))));
-            } else {
-                binding.large.setImage(ImageSource.uri(filePath));
-            }
+
             binding.large.setOnImageEventListener(new SubsamplingScaleImageView.OnImageEventListener() {
                 @Override
                 public void onReady() {
@@ -309,6 +306,13 @@ public class LargeImageView extends RelativeLayout {
 
                 }
             });
+
+            if (LargeUtil.isAndroidQ()) {
+                binding.large.setImage(ImageSource.uri(LargeUtil.getImageContentUri(mContext, new File(filePath))));
+            } else {
+                binding.large.setImage(ImageSource.uri(filePath));
+            }
+
             showLarge(true);
         } catch (Exception e) {
             showErr();
