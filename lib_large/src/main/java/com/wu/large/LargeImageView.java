@@ -270,7 +270,7 @@ public class LargeImageView extends RelativeLayout {
     }
 
 
-    private void setImageFilePath(String filePath) {
+    public void setImageFilePath(String filePath) {
         if (mContext == null || binding == null) return;
         try {
             showLoading(true);
