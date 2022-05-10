@@ -142,15 +142,17 @@ public class LargeImageView extends RelativeLayout {
      */
     public void setFilePath(String filePath) {
         if (mContext == null || binding == null || TextUtils.isEmpty(filePath)) return;
-        if (!LargeUtil.isNoSupport(filePath)) {
-            setImageFilePath(filePath);
-        } else if (LargeUtil.isGif(filePath)) {
-            setGif(filePath);
-        } else {
-            showPhotoView(filePath);
-        }
+//        if (!LargeUtil.isNoSupport(filePath)) {
+//            setImageFilePath(filePath);
+//        } else if (LargeUtil.isGif(filePath)) {
+//            setGif(filePath);
+//        } else {
+//            showPhotoView(filePath);
+//        }
+        setImageFilePath(filePath);
         binding.ivPreview.setVisibility(View.GONE);
     }
+
 
     /**
      * 展示 gif
@@ -269,7 +271,10 @@ public class LargeImageView extends RelativeLayout {
 
     }
 
-
+    /**
+     * 文件地址展示
+     * @param filePath
+     */
     public void setImageFilePath(String filePath) {
         if (mContext == null || binding == null) return;
         try {
@@ -308,11 +313,62 @@ public class LargeImageView extends RelativeLayout {
             });
 
             if (LargeUtil.isAndroidQ()) {
-                binding.large.setImage(ImageSource.uri(LargeUtil.getImageContentUri(mContext, new File(filePath))));
+                if (filePath.startsWith("content://")){
+                    binding.large.setImage(ImageSource.uri(LargeUtil.getImageContentUri(mContext, new File(filePath))));
+                }else {
+                    binding.large.setImage(ImageSource.uri(filePath));
+                }
             } else {
                 binding.large.setImage(ImageSource.uri(filePath));
             }
+            showLarge(true);
+        } catch (Exception e) {
+            showErr();
+        }
 
+    }
+
+    /**
+     * uri展示
+     * @param fileUri
+     */
+    public void setImageUri(String fileUri) {
+        if (mContext == null || binding == null) return;
+        try {
+            showLoading(true);
+
+            binding.large.setOnImageEventListener(new SubsamplingScaleImageView.OnImageEventListener() {
+                @Override
+                public void onReady() {
+
+                }
+
+                @Override
+                public void onImageLoaded() {
+                    showLoading(false);
+                }
+
+                @Override
+                public void onPreviewLoadError(Exception e) {
+
+                }
+
+                @Override
+                public void onImageLoadError(Exception e) {
+                    showPhotoView(fileUri);
+                }
+
+                @Override
+                public void onTileLoadError(Exception e) {
+                    showPhotoView(fileUri);
+                }
+
+                @Override
+                public void onPreviewReleased() {
+
+                }
+            });
+            binding.large.setImage(ImageSource.uri(fileUri));
             showLarge(true);
         } catch (Exception e) {
             showErr();

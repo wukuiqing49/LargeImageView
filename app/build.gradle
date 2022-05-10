@@ -47,5 +47,6 @@ dependencies {
     implementation "jp.wasabeef:glide-transformations:4.1.0"
     implementation project(':lib_large')
     implementation 'com.github.wukuiqing49:Util:v1.0.3'
+    implementation 'com.github.wukuiqing49:MediaPicker:v1.0.1'
 //    implementation 'com.github.wukuiqing49:LargeImageView:1.0.3'
 }
